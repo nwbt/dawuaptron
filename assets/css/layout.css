@@ -5,10 +5,23 @@
  * Distributed under terms of the MIT license.
  */
 
+* {
+	padding: 0;
+	margin: 0;
+}
+
 html {
 	display: flex;
 	flex-flow: column;
 	background: #fff4e6;
+}
+
+body {
+	display: flex;
+	flex-flow: column nowrap;
+	height: 100vh;
+	width: 100vw;
+	font: .8em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 header {
@@ -37,21 +50,16 @@ footer > img {
 	height: 100%;
 }
 
+h2 {
+	margin-bottom: 10px;
+}
+
 #usdalogo {
 	padding: 1em 0 1em 0;
 }
 
 #umtlogo {
 	padding: 1em 0 1em 0;
-}
-
-body {
-	display: flex;
-	flex-flow: column nowrap;
-	margin: 0em;
-	height: 100vh;
-	width: 100vw;
-	font: .8em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .map-box {
@@ -93,16 +101,17 @@ body {
 }
 
 #tabContainer {
+	display: flex;
+	flex-flow: column nowrap;
 	width: auto;
-	height: auto;
-	background-color: dimgrey;
-
-	border-radius: 1em 1em 0 0;
+	height: 100%;
+	padding: 10px;
+	border-radius: 1em;
 }
 
-#tab {
-	height:30px;
+#tabs {
 	overflow: hidden;
+	padding: 0 0 .3em 0;
 }
 
 #tabs > ul {
@@ -120,14 +129,24 @@ body {
 	background: #C9C9C9;
 }
 
-#tabs > ul > li.tabActiveHeader {
+#tabs > ul > li:hover {
 	background: #FFFFFF;
+	cursor: pointer;
+	color: #333333;
+}
+
+#tabs > ul > li.tabActiveHeader {
+	cursor: pointer;
+	background: #FFFFFF;
+	color: #333;
 }
 
 #tabsContent {
-	border-radius: 0 4px 4px 4px;
+	border-radius: 0 0.5em 0.5em 0.5em;
 	padding: 10px 10px 25px;
 	background: #FFFFFF;
 	margin: 0;
 	color: #333;
+	height: 100%;
 }
+
