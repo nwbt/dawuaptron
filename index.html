@@ -1,24 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>DAWUAP</title>
-    <link rel="stylesheet" type="text/css" href="node_modules/openlayers/dist/ol-debug.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/layout.css" />
-  </head>
-  <body>
-    <header></header>
-    <main>
-      <div id="map-box" class="map-box" tabindex="0"></div>
-      <div class="map-sidebar">
-      </div>
-    </main>
-    <footer>
-		<img id="usdalogo" src="assets/img/usda_logo.png" alt="USDA" />
-		<img id="umtlogo" src="assets/img/umt_logo.svg" alt="UMT" />
-	</footer>
-  </body>
-  <script src="node_modules/openlayers/dist/ol-debug.js" type="text/javascript"></script>
-  <script src="node_modules/jquery/dist/jquery.js" type="text/javascript"></script>
-  <script src="assets/js/application-ui.js" type="text/javascript"></script>
+<head>
+	<meta charset="utf-8">
+	<title>DAWUAP</title>
+	<link rel="stylesheet" type="text/css" href="node_modules/openlayers/dist/ol-debug.css"/>
+	<link rel="stylesheet" type="text/css" href="assets/css/layout.css"/>
+</head>
+<body>
+<header></header>
+<main>
+	<div id="map-box" class="map-box" tabindex="0"></div>
+	<div class="map-sidebar">
+		<div id="tabContainer">
+			<div id="tabs">
+				<ul>
+					<li id="tabHeader_1">Page 1</li>
+					<li id="tabHeader_2">Page 2</li>
+					<li id="tabHeader_3">Page 3</li>
+				</ul>
+			</div>
+			<div id="tabsContent">
+				<div class="tagPage", id="tabPage_1">
+					<h2>Page 1</h2>
+					<p>Lots and lots of text here.</p>
+				</div>
+				<div class="tagPage", id="tabPage_2">
+					<h2>Page 2</h2>
+					<p>Lots and lots of text here.</p>
+				</div>
+				<div class="tagPage", id="tabPage_3">
+					<h2>Page 3</h2>
+					<p>Lots and lots of text here.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+<footer>
+	<img id="usdalogo" src="assets/img/usda_logo.png" alt="USDA"/>
+	<img id="umtlogo" src="assets/img/umt_logo.svg" alt="UMT"/>
+</footer>
+</body>
+<script src="node_modules/openlayers/dist/ol-debug.js" type="text/javascript"></script>
+<script src="node_modules/jquery/dist/jquery.js" type="text/javascript"></script>
+<script src="assets/js/application-ui.js" type="text/javascript"></script>
 </html>

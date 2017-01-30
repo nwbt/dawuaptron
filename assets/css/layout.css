@@ -6,87 +6,128 @@
  */
 
 html {
-  display: flex;
-  flex-flow: column;
-  background: #fff4e6;
+	display: flex;
+	flex-flow: column;
+	background: #fff4e6;
 }
 
 header {
-  background: #4b3832;
-  height: 10%;
+	background: #4b3832;
+	height: 10%;
 }
 
 main {
-  display: flex;
-  flex-flow: row nowrap;
-  height: 80%;
-  background: #fff4e6;
-  margin: 0.5em;
+	display: flex;
+	flex-flow: row nowrap;
+	height: 80%;
+	background: #fff4e6;
+	margin: 0.5em;
 }
 
 footer {
-  display: flex;
-  flex-flow: row-reverse nowrap;
-  height: 10%;
+	display: flex;
+	flex-flow: row-reverse nowrap;
+	height: 10%;
 }
 
 footer > img {
-  object-fit: contain;
-  box-sizing: border-box;
-  width: auto;
-  height:100%;
+	object-fit: contain;
+	box-sizing: border-box;
+	width: auto;
+	height: 100%;
 }
 
 #usdalogo {
-  padding: 1em 0 1em 0;
+	padding: 1em 0 1em 0;
 }
 
 #umtlogo {
-  padding: 1em 0 1em 0;
+	padding: 1em 0 1em 0;
 }
 
 body {
-  display: flex;
-  flex-flow: column nowrap;
-  margin: 0em;
-  height: 100vh;
-  width: 100vw;
+	display: flex;
+	flex-flow: column nowrap;
+	margin: 0em;
+	height: 100vh;
+	width: 100vw;
+	font: .8em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .map-box {
-  border-radius: 1em;
-  background: #be9b7b;
-  width: 66%;
-  padding: 0.5em;
+	border-radius: 1em;
+	background: #be9b7b;
+	width: 66%;
+	padding: 0.5em;
 }
 
 #map-box div canvas {
-  border-radius: 1em;
+	border-radius: 1em;
 }
 
 #map-box:focus {
-  box-shadow: 0 0 3pt 2pt steelblue;
-  outline: none;
+	box-shadow: 0 0 3pt 2pt steelblue;
+	outline: none;
 }
 
 .map-sidebar {
-  display: flex;
-  flex-flow: column nowrap;
-  margin-left: 0.5em;
-  border-radius: 1em;
-  background: #854442;
-  width: 34%;
+	display: flex;
+	flex-flow: column nowrap;
+	margin-left: 0.5em;
+	border-radius: 1em;
+	background: #854442;
+	width: 34%;
 }
 
 .ol-mouse-position {
-  background-color: rgba(255,255,255,0.4);
-  top: auto;
-  right: auto;
-  bottom: 1em;
-  left: 1em;
-  border-radius: 2px;
-  width: 100px;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  font-size: 12px;
+	background-color: rgba(255, 255, 255, 0.4);
+	top: auto;
+	right: auto;
+	bottom: 1em;
+	left: 1em;
+	border-radius: 2px;
+	width: 100px;
+	text-align: center;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+}
+
+#tabContainer {
+	width: auto;
+	height: auto;
+	background-color: dimgrey;
+
+	border-radius: 1em 1em 0 0;
+}
+
+#tab {
+	height:30px;
+	overflow: hidden;
+}
+
+#tabs > ul {
+	list-style: none;
+}
+
+#tabs > ul > li {
+	margin: 0 2px 0 0;
+	padding: 7px 10px;
+	display: block;
+	float: left;
+	color: #000;
+	user-select: none;
+	border-radius: 4px 4px 0px 0px;
+	background: #C9C9C9;
+}
+
+#tabs > ul > li.tabActiveHeader {
+	background: #FFFFFF;
+}
+
+#tabsContent {
+	border-radius: 0 4px 4px 4px;
+	padding: 10px 10px 25px;
+	background: #FFFFFF;
+	margin: 0;
+	color: #333;
 }
