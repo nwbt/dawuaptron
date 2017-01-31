@@ -1,0 +1,26 @@
+/**
+ * File: chart.css Project: webstorm-empty
+ * Copyright (c) 2017 Dan Catalano <dev@nwbt.co>
+ *
+ * Distributed under terms of the $LICENSE license.
+ */
+
+.chart rect {
+	fill: steelblue;
+}
+
+.chart text {
+	fill: white;
+	font: 10px sans-serif;
+	text-anchor: end;
+}
+
+.axis--x path {
+	display: none;
+}
+
+.line {
+	fill: none;
+	stroke: steelblue;
+	stroke-width: 2px;
+}
