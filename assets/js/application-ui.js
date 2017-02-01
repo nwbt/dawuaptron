@@ -28,8 +28,8 @@ function setPrimaryTab() {
 	activeHeader.parentNode.setAttribute("primary-data-current", activeTabNumber);
 	activeHeader.setAttribute("class", "tab-active-header");
 
-	let pages = tabContents.getElementsByTagName("div");
-	for (let i = 0; i < pages.length; i++) {
+	let pages = tabContents.getElementsByClassName("primary-tab-page");
+	for (let i = 1; i < pages.length; i++) {
 		pages.item(i).style.display = "none"
 	}
 
@@ -51,7 +51,6 @@ function switchPrimaryTabs() {
 	let currentTab = document.getElementById("primary-tab-page_" + activeTabNumber);
 	currentTab.style.display="block";
 
-	// todo check to see how this work svg tag
 	let currentTabChildren = currentTab.getElementsByTagName("div");
 	for (let i = 0; i < currentTabChildren.length; i++) {
 		currentTabChildren.item(i).style.display="block";
@@ -59,6 +58,7 @@ function switchPrimaryTabs() {
 	this.parentNode.setAttribute("primary-data-current", activeTabNumber);
 }
 
+// todo redundant code block, merge with primary
 function setSidebarTab() {
 	"use strict";
 	let container = document.getElementById("sidebar-tab-container");
@@ -70,8 +70,8 @@ function setSidebarTab() {
 	activeHeader.parentNode.setAttribute("sidebar-data-current", activeTabNumber);
 	activeHeader.setAttribute("class", "tab-active-header");
 
-	let pages = tabContents.getElementsByTagName("div");
-	for (let i = 0; i < pages.length; i++) {
+	let pages = tabContents.getElementsByClassName("sidebar-tab-page");
+	for (let i = 1; i < pages.length; i++) {
 		pages.item(i).style.display = "none"
 	}
 
@@ -81,6 +81,7 @@ function setSidebarTab() {
 	}
 }
 
+// todo redundant code block, merge with primary
 function switchSidebarTabs() {
 	"use strict";
 	let current = this.parentNode.getAttribute("sidebar-data-current");
@@ -150,6 +151,7 @@ function displayMap(){
 	console.log('end')
 }
 
+// todo clean up - var to let
 function displaySeriesLineChart() {
 	"use strict";
 	const $ = require("jquery");
