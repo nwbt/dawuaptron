@@ -10,18 +10,35 @@
 <body>
 <header></header>
 <main>
-	<div id="map-box" class="map-box" tabindex="0"></div>
-	<div class="map-sidebar">
-		<div id="tabContainer">
-			<div id="tabs">
+	<div id="primary-content" class="main-container">
+		<div id="primary-tab-container" class="outer-container">
+			<div id="primary-tab-headers" class="tabs">
 				<ul>
-					<li id="tabHeader_1">Scenario</li>
-					<li id="tabHeader_2">Chart</li>
-					<li id="tabHeader_3">Legend</li>
+					<li id="primary-tab-header_1">Map</li>
+					<li id="primary-tab-header_2">Chart</li>
 				</ul>
 			</div>
-			<div id="tabsContent">
-				<div class="tagPage" id="tabPage_1">
+			<div id="primary-tab-contents" class="tab-contents">
+				<div id="primary-tab-page_1" class="primary-tab-page">
+					<div id="map"></div>
+				</div>
+				<div id="primary-tab-page_2" class="primary-tab-page">
+					<svg id="chart"></svg>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="sidebar-content" class="main-container">
+		<div id="sidebar-tab-container" class="outer-container">
+			<div id="sidebar-tab-headers" class="tabs">
+				<ul>
+					<li id="sidebar-tab-header_1">Scenario</li>
+					<li id="sidebar-tab-header_2">Chart</li>
+					<li id="sidebar-tab-header_3">Legend</li>
+				</ul>
+			</div>
+			<div id="sidebar-tab-contents" class="tab-contents">
+				<div id="sidebar-tab-page_1" class="sidebar-tab-page">
 					<h2>Page 1</h2>
 					<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
 						Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
@@ -33,10 +50,19 @@
 						vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
 						porttitor, facilisis luctus, metus.</p>
 				</div>
-				<div class="tagPage" id="tabPage_2">
-					<svg class="chart"></svg>
+				<div id="sidebar-tab-page_2" class="sidebar-tab-page">
+					<h2>Page 2</h2>
+					<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+						Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
+						sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+						Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
+						commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros
+						ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+						facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu
+						vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
+						porttitor, facilisis luctus, metus.</p>
 				</div>
-				<div class="tagPage" id="tabPage_3">
+				<div id="sidebar-tab-page_3" class="sidebar-tab-page">
 					<h2>Page 3</h2>
 					<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
 						egestas. </p>
@@ -54,8 +80,8 @@
 	</div>
 </main>
 <footer>
-	<img id="usdalogo" src="assets/img/usda_logo.png" alt="USDA"/>
-	<img id="umtlogo" src="assets/img/umt_logo.svg" alt="UMT"/>
+	<img id="usda-logo" src="assets/img/usda_logo.png" alt="USDA"/>
+	<img id="umt-logo" src="assets/img/umt_logo.svg" alt="UMT"/>
 </footer>
 </body>
 <script src="node_modules/jquery/dist/jquery.js" type="text/javascript"></script>

@@ -5,22 +5,16 @@
  * Distributed under terms of the $LICENSE license.
  */
 
-.chart rect {
-	fill: steelblue;
+#chart {
+	height: 100%;
+	width: 100%;
 }
 
-.chart text {
-	fill: white;
-	font: 10px sans-serif;
-	text-anchor: end;
-}
-
-.axis--x path {
-	display: none;
+#chart text {
+	font: 11px sans-serif;
 }
 
 .line {
 	fill: none;
-	stroke: steelblue;
-	stroke-width: 2px;
+	stroke-width: 1px;
 }

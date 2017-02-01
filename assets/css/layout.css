@@ -54,28 +54,21 @@ h2 {
 	margin-bottom: 10px;
 }
 
-#usdalogo {
+#usda-logo {
 	padding: 1em 0 1em 0;
 }
 
-#umtlogo {
+#umt-logo {
 	padding: 1em 0 1em 0;
 }
 
-.map-box {
-	border-radius: 1em;
-	background: #be9b7b;
-	width: 66%;
-	padding: 0.5em;
+#map {
+	height: 100%;
+	border-radius: 0.5em;
 }
 
-#map-box div canvas {
-	border-radius: 1em;
-}
-
-#map-box:focus {
-	box-shadow: 0 0 3pt 2pt steelblue;
-	outline: none;
+#map div canvas {
+	border-radius: 0.5em;
 }
 
 .map-sidebar {
@@ -83,8 +76,6 @@ h2 {
 	flex-flow: column nowrap;
 	margin-left: 0.5em;
 	border-radius: 1em;
-	background: #854442;
-	width: 34%;
 }
 
 .ol-mouse-position {
@@ -100,7 +91,7 @@ h2 {
 	font-size: 12px;
 }
 
-#tabContainer {
+.tab-container {
 	display: flex;
 	flex-flow: column nowrap;
 	width: auto;
@@ -109,44 +100,94 @@ h2 {
 	border-radius: 1em;
 }
 
-#tabs {
+.main-container {
+	display: flex;
+	flex-flow: column nowrap;
+	border-radius: 0.5em;
+}
+
+.outer-container {
+	display: flex;
+	flex-flow: column nowrap;
+	width: auto;
+	height: 100%;
+	padding: 10px;
+	border-radius: 1em;
+}
+
+.tabs {
 	overflow: hidden;
 	padding: 0 0 .3em 0;
 }
 
-#tabs > ul {
+.tabs > ul {
 	list-style: none;
 }
 
-#tabs > ul > li {
+.tabs > ul > li {
 	margin: 0 2px 0 0;
 	padding: 7px 10px;
 	display: block;
 	float: left;
 	color: #000;
 	user-select: none;
-	border-radius: 4px 4px 0px 0px;
+	border-radius: 4px 4px 0 0;
 	background: #C9C9C9;
 }
 
-#tabs > ul > li:hover {
+.tabs > ul > li:hover {
 	background: #FFFFFF;
 	cursor: pointer;
 	color: #333333;
 }
 
-#tabs > ul > li.tabActiveHeader {
+.tabs > ul > li.tab-active-header {
 	cursor: pointer;
 	background: #FFFFFF;
 	color: #333;
 }
 
-#tabsContent {
+.tab-contents {
+	display: flex;
+	flex-flow: column nowrap;
 	border-radius: 0 0.5em 0.5em 0.5em;
-	padding: 10px 10px 25px;
+	padding: 10px;
 	background: #FFFFFF;
 	margin: 0;
 	color: #333;
 	height: 100%;
+}
+
+.primary-tab-page {
+	height: 100%;
+}
+
+#sidebar-content {
+	width: 34%;
+	background: #854442;
+	margin-left: 0.5em;
+}
+
+#primary-content {
+	width: 66%;
+	background: #be9b7b;
+}
+
+#primary-tab-container {
+}
+
+#primary-tab-headers {
+}
+
+#primary-tab-contents {
+}
+
+#sidebar-tab-container {
+}
+
+#sidebar-tab-headers {
+}
+
+#sidebar-tab-contents {
 }
 

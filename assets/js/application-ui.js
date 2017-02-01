@@ -10,59 +10,95 @@ window.onload=function() {
 	"use strict";
 
 	displayMap();
-	// displayBasicChartI();
-	// displayBasicChartII();
+
 	displaySeriesLineChart();
 
-	// get tab container
-	let container = document.getElementById("tabContainer");
-	let tabcon = document.getElementById("tabsContent");
-
-	// set current tab
-	let navitem = document.getElementById("tabHeader_1");
-
-	// store which tab we are on
-	let ident = navitem.id.split("_")[1];
-
-	// alert(ident)
-	navitem.parentNode.setAttribute("data-current", ident);
-
-	// set current tab with class of activeTabHeader
-	navitem.setAttribute("class", "tabActiveHeader");
-
-	//hide two tab contents we don't need
-	let pages = tabcon.getElementsByTagName("div");
-	for (let i = 1; i < pages.length; i++) {
-		pages.item(i).style.display = "none";
-	}
-
-	//this adds click event to tabs
-	let tabs = container.getElementsByTagName("li");
-	for (let i = 0; i < tabs.length; i++) {
-		tabs[i].onclick = switchTabs;
-	}
+	setPrimaryTab();
+	setSidebarTab();
 };
 
-// on click of one of tabs
-function switchTabs() {
+function setPrimaryTab() {
 	"use strict";
-	let current = this.parentNode.getAttribute("data-current");
+	let container = document.getElementById("primary-tab-container");
+	let tabContents = document.getElementById("primary-tab-contents");
 
-	//remove class of activetabheader and hide old contents
-	document.getElementById("tabHeader_" + current).removeAttribute("class");
-	document.getElementById("tabPage_" + current).style.display="none";
+	let activeHeader = document.getElementById("primary-tab-header_1");
+	let activeTabNumber = activeHeader.id.split("_")[1];
 
-	let ident = this.id.split("_")[1];
+	activeHeader.parentNode.setAttribute("primary-data-current", activeTabNumber);
+	activeHeader.setAttribute("class", "tab-active-header");
 
-	//add class of activetabheader to new active tab and show contents
-	this.setAttribute("class","tabActiveHeader");
-	let currentTab = document.getElementById("tabPage_" + ident);
+	let pages = tabContents.getElementsByTagName("div");
+	for (let i = 0; i < pages.length; i++) {
+		pages.item(i).style.display = "none"
+	}
+
+	let tabs = container.getElementsByTagName("li");
+	for (let i = 0; i < tabs.length; i++) {
+		tabs[i].onclick = switchPrimaryTabs;
+	}
+}
+
+function switchPrimaryTabs() {
+	"use strict";
+	let current = this.parentNode.getAttribute("primary-data-current");
+	document.getElementById("primary-tab-header_" + current).removeAttribute("class");
+	document.getElementById("primary-tab-page_" + current).style.display="none";
+
+	let activeTabNumber = this.id.split("_")[1];
+
+	this.setAttribute("class", "tab-active-header");
+	let currentTab = document.getElementById("primary-tab-page_" + activeTabNumber);
 	currentTab.style.display="block";
+
+	// todo check to see how this work svg tag
 	let currentTabChildren = currentTab.getElementsByTagName("div");
 	for (let i = 0; i < currentTabChildren.length; i++) {
 		currentTabChildren.item(i).style.display="block";
 	}
-	this.parentNode.setAttribute("data-current",ident);
+	this.parentNode.setAttribute("primary-data-current", activeTabNumber);
+}
+
+function setSidebarTab() {
+	"use strict";
+	let container = document.getElementById("sidebar-tab-container");
+	let tabContents = document.getElementById("sidebar-tab-contents");
+
+	let activeHeader = document.getElementById("sidebar-tab-header_1");
+	let activeTabNumber = activeHeader.id.split("_")[1];
+
+	activeHeader.parentNode.setAttribute("sidebar-data-current", activeTabNumber);
+	activeHeader.setAttribute("class", "tab-active-header");
+
+	let pages = tabContents.getElementsByTagName("div");
+	for (let i = 0; i < pages.length; i++) {
+		pages.item(i).style.display = "none"
+	}
+
+	let tabs = container.getElementsByTagName("li");
+	for (let i = 0; i < tabs.length; i++) {
+		tabs[i].onclick = switchSidebarTabs;
+	}
+}
+
+function switchSidebarTabs() {
+	"use strict";
+	let current = this.parentNode.getAttribute("sidebar-data-current");
+	document.getElementById("sidebar-tab-header_" + current).removeAttribute("class");
+	document.getElementById("sidebar-tab-page_" + current).style.display="none";
+
+	let activeTabNumber = this.id.split("_")[1];
+
+	this.setAttribute("class", "tab-active-header");
+	let currentTab = document.getElementById("sidebar-tab-page_" + activeTabNumber);
+	currentTab.style.display="block";
+
+	// todo check to see how this work svg tag
+	let currentTabChildren = currentTab.getElementsByTagName("div");
+	for (let i = 0; i < currentTabChildren.length; i++) {
+		currentTabChildren.item(i).style.display="block";
+	}
+	this.parentNode.setAttribute("sidebar-data-current", activeTabNumber);
 }
 
 function displayMap(){
@@ -103,7 +139,7 @@ function displayMap(){
 	});
 
 	let montanaMap = new ol.Map({
-		target: 'map-box',
+		target: 'map',
 		layers: mapLayers,
 		view: mapView,
 		controls: mapControls,
@@ -114,60 +150,20 @@ function displayMap(){
 	console.log('end')
 }
 
-function displayBasicChartI() {
-	"use strict";
-	let data = [4, 8, 15, 16, 23, 42];
-	let svg = d3.select(".chart");
-	let bar = svg.selectAll("div");
-	let barUpdate = bar.data(data);
-	let barEnter = barUpdate.enter().append("div");
-	barEnter.style("width", function(d) { return d * 5 + "px"; });
-	barEnter.text(function(d) { return d; });
-
-}
-
-function displayBasicChartII() {
-	"use strict";
-	let data = [4, 8, 15, 16, 23, 42];
-
-	let width = 420,
-		barHeight = 20;
-
-	let x = d3.scaleLinear()
-		.domain([0, d3.max(data)])
-		.range([0, width]);
-
-	let chart = d3.select(".chart")
-		.attr("width", width)
-		.attr("height", barHeight * data.length);
-
-	let bar = chart.selectAll("g")
-		.data(data)
-		.enter().append("g")
-		.attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
-
-	bar.append("rect")
-		.attr("width", x)
-		.attr("height", barHeight - 1);
-
-	bar.append("text")
-		.attr("x", function(d) { return x(d) - 3; })
-		.attr("y", barHeight / 2)
-		.attr("dy", ".35em")
-		.text(function(d) { return d; });
-
-}
-
 function displaySeriesLineChart() {
-	// "use strict";
+	"use strict";
 	const $ = require("jquery");
+	let svg = d3.select("#chart");
 
-	let svg = d3.select("svg");
 	let	margin = {top: 20, right: 80, bottom: 30, left: 50};
-	let width = $("svg").parent().width() - margin.left - margin.right;
-	let height = $("svg").parent().height() - margin.top - margin.bottom;
-	// var	width = svg.attr("width") - margin.left - margin.right;
-	// var	height = svg.attr("height") - margin.top - margin.bottom;
+
+	// not sure why but the below id's parent's height is correct and it's own is but a fraction of the avail space
+	let origWidth = $('#primary-tab-page_2').parent().width();
+	let origHeight = $('#primary-tab-page_2').parent().height();
+
+    let width =  origWidth - margin.left - margin.right;
+    let height =  origHeight - margin.top - margin.bottom;
+
 	var	g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	var parseTime = d3.timeParse("%Y%m%d");
