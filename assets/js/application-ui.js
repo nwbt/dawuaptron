@@ -160,21 +160,22 @@ function displaySeriesLineChart() {
 	let	margin = {top: 20, right: 80, bottom: 30, left: 50};
 
 	// not sure why but the below id's parent's height is correct and it's own is but a fraction of the avail space
-	let origWidth = $('#primary-tab-page_2').parent().width();
-	let origHeight = $('#primary-tab-page_2').parent().height();
+	let parentObj = $('#primary-tab-page_2').parent();
+	let origWidth = parentObj.width();
+	let origHeight = parentObj.height();
 
     let width =  origWidth - margin.left - margin.right;
     let height =  origHeight - margin.top - margin.bottom;
 
-	var	g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+	let	g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	var parseTime = d3.timeParse("%Y%m%d");
+	let parseTime = d3.timeParse("%Y%m%d");
 
-	var x = d3.scaleTime().range([0, width]),
+	let x = d3.scaleTime().range([0, width]),
 		y = d3.scaleLinear().range([height, 0]),
 		z = d3.scaleOrdinal(d3.schemeCategory10);
 
-	var line = d3.line()
+	let line = d3.line()
 		.curve(d3.curveBasis)
 		.x(function(d) { return x(d.date); })
 		.y(function(d) { return y(d.temperature); });
@@ -182,7 +183,7 @@ function displaySeriesLineChart() {
 	d3.tsv("tests/resources/data.tsv", type, function(error, data) {
 		if (error) throw error;
 
-		var cities = data.columns.slice(1).map(function(id) {
+		let cities = data.columns.slice(1).map(function(id) {
 			return {
 				id: id,
 				values: data.map(function(d) {
@@ -215,7 +216,7 @@ function displaySeriesLineChart() {
 			.attr("fill", "#000")
 			.text("Temperature, ºF");
 
-		var city = g.selectAll(".city")
+		let city = g.selectAll(".city")
 			.data(cities)
 			.enter().append("g")
 			.attr("class", "city");
@@ -236,7 +237,7 @@ function displaySeriesLineChart() {
 
 	function type(d, _, columns) {
 		d.date = parseTime(d.date);
-		for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
+		for (let i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
 		return d;
 	}
 }
