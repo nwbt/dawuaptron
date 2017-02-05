@@ -8,7 +8,66 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/chart.css"/>
 </head>
 <body>
-<header></header>
+<header>
+	<div id="header-control_1" class="header-control-boxes">
+		<div id="hydra-url-control" class="header-controls">
+			<h3 class="header-titles">Hydra Server</h3>
+			<div class="input_and_button">
+				<input id="hydra-url" placeholder="127.0.0.1:8080">
+				<button>Connect</button>
+			</div>
+		</div>
+	</div>
+	<div id="header-control_2" class="header-control-boxes">
+		<div id="hydra-network-control" class="header-controls">
+			<h3 class="header-titles">Network Name</h3>
+			<div class="input_and_button">
+				<select id="network-name-select">
+					<option value="mt">Montana</option>
+					<option value="id">Idaho</option>
+					<option value="wy">Wyoming</option>
+					<option value="co">Colorado</option>
+				</select>
+				<button>Retrieve</button>
+			</div>
+		</div>
+	</div>
+	<div id="header-control_3" class="header-control-boxes">
+		<div id="hydra-scenario-control_1" class="header-controls">
+			<h3 class="header-titles">Scenario Name (Climate)</h3>
+			<div class="input_and_button">
+				<select id="scenario-climate-select">
+					<option value="historical">Historical</option>
+					<option value="custom-1">Custom 1</option>
+					<option value="custom-2">Custom 2</option>
+				</select>
+				<button>Retrieve</button>
+			</div>
+			<h3 id="header-title-economic" class="header-titles">Scenario Name (Economic)</h3>
+			<div class="input_and_button">
+				<select id="scenario-economic-select">
+					<option value="historical">Historical</option>
+					<option value="custom-1">Custom 1</option>
+					<option value="custom-2">Custom 2</option>
+				</select>
+				<button>Retrieve</button>
+			</div>
+		</div>
+	</div>
+	<div id="header-control_4" class="header-control-boxes">
+		<div id="hydra-scenario-control_2" class="header-controls">
+			<h3 class="header-titles">Scenario Name (Policy)</h3>
+			<div class="input_and_button">
+				<select id="scenario-policy-select">
+					<option value="historical">Historical</option>
+					<option value="custom-1">Custom 1</option>
+					<option value="custom-2">Custom 2</option>
+				</select>
+				<button>Retrieve</button>
+			</div>
+		</div>
+	</div>
+</header>
 <main>
 	<div id="primary-content" class="main-container">
 		<div id="primary-tab-container" class="outer-container">
@@ -32,9 +91,10 @@
 		<div id="sidebar-tab-container" class="outer-container">
 			<div id="sidebar-tab-headers" class="tabs">
 				<ul>
-					<li id="sidebar-tab-header_1">Scenario</li>
+					<li id="sidebar-tab-header_1">Controls</li>
 					<li id="sidebar-tab-header_2">Chart</li>
-					<li id="sidebar-tab-header_3">Legend</li>
+					<li id="sidebar-tab-header_3">Tables</li>
+					<li id="sidebar-tab-header_4">Legend</li>
 				</ul>
 			</div>
 			<div id="sidebar-tab-contents" class="tab-contents">

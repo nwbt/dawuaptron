@@ -25,14 +25,62 @@ body {
 }
 
 header {
-	background: #4b3832;
-	height: 10%;
+	display: flex;
+	flex-flow: row nowrap;
+	height: 16%;
+	justify-content: space-around;
+}
+
+input {
+	margin: .5em;
+	font: 1em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+select {
+	margin: .5em;
+	font: 1em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	width: 10em;
+}
+
+button {
+	margin: .5em .5em .5em 1.25em;
+	padding: .5em;
+	font: 1em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	/*border-radius: .25em;*/
+}
+
+.header-control-boxes {
+	display: flex;
+	flex-flow: column nowrap;
+	width: 24%;
+}
+
+.header-controls {
+	padding: .5em;
+}
+
+.input_and_button {
+	display: flex;
+	flex-flow: row nowrap;
+	vertical-align: middle;
+}
+
+#hydra-url {
+	width: auto;
+}
+
+.header-titles {
+	margin-left: .5em;
+}
+
+#header-title-economic {
+	margin-top: .25em;
 }
 
 main {
 	display: flex;
 	flex-flow: row nowrap;
-	height: 80%;
+	height: 75%;
 	background: #fff4e6;
 	margin: 0.5em;
 }
@@ -40,7 +88,7 @@ main {
 footer {
 	display: flex;
 	flex-flow: row-reverse nowrap;
-	height: 10%;
+	height: 9%;
 }
 
 footer > img {
