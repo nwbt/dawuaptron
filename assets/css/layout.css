@@ -27,7 +27,7 @@ body {
 header {
 	display: flex;
 	flex-flow: row nowrap;
-	height: 16%;
+	height: 15%;
 	justify-content: space-around;
 }
 
@@ -62,7 +62,6 @@ button {
 .input_and_button {
 	display: flex;
 	flex-flow: row nowrap;
-	vertical-align: middle;
 }
 
 #hydra-url {
@@ -80,7 +79,7 @@ button {
 main {
 	display: flex;
 	flex-flow: row nowrap;
-	height: 75%;
+	height: 78%;
 	background: #fff4e6;
 	margin: 0.5em;
 }
@@ -88,7 +87,7 @@ main {
 footer {
 	display: flex;
 	flex-flow: row-reverse nowrap;
-	height: 9%;
+	height: 7%;
 }
 
 footer > img {
@@ -239,3 +238,39 @@ h2 {
 #sidebar-tab-contents {
 }
 
+.sidebar-tab-page {
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+#sidebar-tab-page_1 {
+	justify-content: space-around;
+	height: 100%;
+}
+
+.control-containers {
+	display: flex;
+	flex-flow: column nowrap;
+	height: 20%;
+	background: #FFF4E6;
+	margin: .5em;
+	border: solid thin;
+	padding: .5em;
+}
+
+.sidebar-tab-page > h3 {
+	margin-left: 1em;
+}
+
+#control-container_last {
+	display: flex;
+	flex-flow: row nowrap;
+	height: 15%;
+	border: none;
+	justify-content: space-between;
+}
+
+#control-container_last-left {
+	display: flex;
+	flex-flow: column nowrap;
+}
