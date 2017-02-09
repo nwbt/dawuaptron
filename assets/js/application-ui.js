@@ -105,25 +105,105 @@ function switchSidebarTabs() {
 
 function displayMap(){
 	'use strict';
+	const ol = require('openlayers');
+	const $ = require("jquery"); // set references to jQuery with the default $
 	console.log('beginning')
 	let montanaCoord = [-110, 47];
 
-	let mapSource = new ol.source.Vector({
-		format: new ol.format.GeoJSON(),
-		url: "tests/resources/montananetworklatlon.geojson"
-	});
+	let linesRivers;
+	let linesDiversionChannels;
+	let pointsWaterUsers;
+	let polygonWatershedBasin;
 
-	let vectorLayer = new ol.layer.Vector({
-		source: mapSource
-	});
-
-	let rasterLayer = new ol.layer.Tile({
-		source: new ol.source.Stamen({
-			layer: 'terrain-background'
+	let diversionStyle = new ol.style.Style({
+		fill: new ol.style.Fill({
+			color: [203, 194, 185, 1]
+		}),
+		stroke: new ol.style.Stroke({
+			color: [177, 163, 148, 0.5],
+			width: 2
 		})
 	});
 
-	let mapLayers = [rasterLayer, vectorLayer];
+	linesRivers = new ol.source.Vector({
+		projection: 'EPSG:4326',
+		format: new ol.format.GeoJSON(),
+		// url: "tests/resources/montananetworklatlon.geojson",
+		url: "tests/resources/geojson/MontanaHydroToNodesLatLon.geojson",
+	});
+
+	linesDiversionChannels = new ol.source.Vector({
+		projection: 'EPSG:4326',
+		format: new ol.format.GeoJSON(),
+		// url: "tests/resources/MontanaHydroToNodesLatLon.geojson",
+		// url: "tests/resources/geojson/MontanaHydroToNodesLatLon.geojson",
+		url: "tests/resources/geojson/DiversionChannelLatLon.geojson",
+	});
+
+	pointsWaterUsers = new ol.source.Vector({
+		projection: 'EPSG:4326',
+		format: new ol.format.GeoJSON(),
+		// url: "tests/resources/WaterUserNodeLatLon.geojson",
+		url: "tests/resources/geojson/WaterUserNodeLatLon.geojson",
+	});
+
+	polygonWatershedBasin = new ol.source.Vector({
+		projection: 'EPSG:4326',
+		format: new ol.format.GeoJSON(),
+		url: 'tests/resources/geojson/MontanaWatershedBasins.geojson',
+	});
+
+	let vLinesRivers = new ol.layer.Vector({
+		name: 'linesRivers',
+		source: linesRivers,
+		visible: false,
+		zIndex: 97,
+		// style: diversionStyle,
+	});
+
+	let vLinesDiversionChannels = new ol.layer.Vector({
+		name: 'linesDiversionChannels',
+		source: linesDiversionChannels,
+		visible: false,
+		zIndex: 98,
+		// style: diversionStyle,
+	});
+
+	let vPointsWaterUsers = new ol.layer.Vector({
+		name: 'pointsWaterUsers',
+		source: pointsWaterUsers,
+		visible: false,
+		zIndex: 99,
+		// style: diversionStyle,
+	});
+
+	let vPolygonWatershedBasin = new ol.layer.Vector({
+		name: 'polygonWatershedBasin',
+		source: polygonWatershedBasin,
+		visible: false,
+		zIndex: 96,
+	});
+
+	let tStamenTerrian = new ol.layer.Tile({
+		name: 'stamenTerrain',
+		source: new ol.source.Stamen({
+			layer: 'terrain-background'
+		}),
+		visible: false,
+		zIndex: 0,
+	});
+
+	let tOpenStreetMaps = new ol.layer.Tile({
+		name: 'openStreetMaps',
+		source: new ol.source.OSM(),
+		visible: false,
+		zIndex: 1,
+	});
+
+	// todo dynamically add checkboxes here & remove from html
+	// let checkboxes = $('#maplayer-controls')
+
+	let mapLayers = [tStamenTerrian, tOpenStreetMaps, vLinesRivers, vLinesDiversionChannels, vPointsWaterUsers, vPolygonWatershedBasin];
 
 	let mapView = new ol.View({
 		projection: 'EPSG:4326',
@@ -148,6 +228,27 @@ function displayMap(){
 	});
 
 	montanaMap.addControl(mousePositionControl);
+
+	$('#maplayer-controls').on('change', function(event) {
+		let target = $(event.target);
+		let control = target.val();
+
+		if(target.prop('checked')) {
+			let layers = montanaMap.getLayers().getArray();
+			for(let i = 0; i < layers.length; i++) {
+				if (control === layers[i].get('name')) {
+					layers[i].setVisible(true);
+				}
+			}
+		} else {
+			let layers = montanaMap.getLayers().getArray();
+			for(let i = 0; i < layers.length; i++) {
+				if (control === layers[i].get('name')) {
+					layers[i].setVisible(false);
+				}
+			}
+		}
+	});
 
 	console.log('end')
 }
