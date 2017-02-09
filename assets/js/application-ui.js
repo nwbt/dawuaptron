@@ -241,7 +241,6 @@ function displayMap(){
 		name: 'mapbox',
 		source: new ol.source.XYZ({
 			url: 'https://api.mapbox.com/styles/v1/nwbt/ciyyunuuq002b2rmk2d8rz8g8/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibndidCIsImEiOiJjaXl5dWIxMTIwMDd6MndweHg1Zm4wd3hsIn0.8pZd_crQIcSDsq-GlEpYjA',
-			// url: 'https://api.mapbox.com/styles/v1/nwbt/ciyyunuuq002b2rmk2d8rz8g8/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibndidCIsImEiOiJjaXl5dWIxMTIwMDd6MndweHg1Zm4wd3hsIn0.8pZd_crQIcSDsq-GlEpYjA',
 		}),
 		visible: false,
 		zIndex: 2,
@@ -258,14 +257,16 @@ function displayMap(){
 		zoom: 7
 	});
 
-	let mapControls = ol.control.defaults().extend([
-		new ol.control.FullScreen()
-	]);
-
 	let mousePositionControl = new ol.control.MousePosition({
 		coordinateFormat: ol.coordinate.createStringXY(2),
 		projection: 'EPSG:4326'
 	});
+
+	let mapControls = ol.control.defaults({
+		attribution: false,
+	}).extend([
+		mousePositionControl,
+	]);
 
 	let montanaMap = new ol.Map({
 		target: 'map',
@@ -273,8 +274,6 @@ function displayMap(){
 		view: mapView,
 		controls: mapControls,
 	});
-
-	montanaMap.addControl(mousePositionControl);
 
 	$('#maplayer-controls').on('change', function(event) {
 		let target = $(event.target);
