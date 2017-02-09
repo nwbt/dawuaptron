@@ -115,16 +115,52 @@ function displayMap(){
 	let pointsWaterUsers;
 	let polygonWatershedBasin;
 
-	let diversionStyle = new ol.style.Style({
-		fill: new ol.style.Fill({
-			color: [203, 194, 185, 1]
-		}),
-		stroke: new ol.style.Stroke({
-			color: [177, 163, 148, 0.5],
-			width: 2
-		})
+	let width = 0.5;
+	let whiteFill = new ol.style.Fill({
+		color: 'rgba(255, 255, 255, 0.15)',
 	});
 
+	let blueFill = new ol.style.Fill({
+		color: 'rgba(0, 0, 255, .75)',
+	});
+
+	let redFill = new ol.style.Fill({
+		color: 'rgba(255, 0, 0, 0.75)',
+	});
+
+	let cyanStroke = new ol.style.Stroke({
+		color: 'rgba(0, 0, 0, 0.25)',
+		width: width,
+	});
+
+	let magentaStroke = new ol.style.Stroke({
+		color: 'rgba(255, 0, 255, .35)',
+		width: width * 3,
+	});
+
+	let defaultCircle1 = new ol.style.Circle({
+		radius: width * 5,
+		fill: blueFill,
+	});
+
+	let defaultCircle2 = new ol.style.Circle({
+		radius: width * 5,
+		fill: redFill,
+	});
+
+	let defaultStyle1 = new ol.style.Style({
+		fill: whiteFill,
+		stroke: magentaStroke,
+		image: defaultCircle1,
+	});
+
+	let defaultStyle2 = new ol.style.Style({
+		fill: whiteFill,
+		stroke: cyanStroke,
+		image: defaultCircle2,
+	});
+
+	// todo not accurate name
 	linesRivers = new ol.source.Vector({
 		projection: 'EPSG:4326',
 		format: new ol.format.GeoJSON(),
@@ -158,7 +194,7 @@ function displayMap(){
 		source: linesRivers,
 		visible: false,
 		zIndex: 97,
-		// style: diversionStyle,
+		style: defaultStyle2,
 	});
 
 	let vLinesDiversionChannels = new ol.layer.Vector({
@@ -166,7 +202,7 @@ function displayMap(){
 		source: linesDiversionChannels,
 		visible: false,
 		zIndex: 98,
-		// style: diversionStyle,
+		style: defaultStyle1,
 	});
 
 	let vPointsWaterUsers = new ol.layer.Vector({
@@ -174,7 +210,7 @@ function displayMap(){
 		source: pointsWaterUsers,
 		visible: false,
 		zIndex: 99,
-		// style: diversionStyle,
+		style: defaultStyle1,
 	});
 
 	let vPolygonWatershedBasin = new ol.layer.Vector({
@@ -182,6 +218,7 @@ function displayMap(){
 		source: polygonWatershedBasin,
 		visible: false,
 		zIndex: 96,
+		style: defaultStyle2,
 	});
 
 	let tStamenTerrian = new ol.layer.Tile({
@@ -200,10 +237,20 @@ function displayMap(){
 		zIndex: 1,
 	});
 
+	let tMapbox = new ol.layer.Tile({
+		name: 'mapbox',
+		source: new ol.source.XYZ({
+			url: 'https://api.mapbox.com/styles/v1/nwbt/ciyyunuuq002b2rmk2d8rz8g8/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibndidCIsImEiOiJjaXl5dWIxMTIwMDd6MndweHg1Zm4wd3hsIn0.8pZd_crQIcSDsq-GlEpYjA',
+			// url: 'https://api.mapbox.com/styles/v1/nwbt/ciyyunuuq002b2rmk2d8rz8g8/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibndidCIsImEiOiJjaXl5dWIxMTIwMDd6MndweHg1Zm4wd3hsIn0.8pZd_crQIcSDsq-GlEpYjA',
+		}),
+		visible: false,
+		zIndex: 2,
+	});
+
 	// todo dynamically add checkboxes here & remove from html
 	// let checkboxes = $('#maplayer-controls')
 
-	let mapLayers = [tStamenTerrian, tOpenStreetMaps, vLinesRivers, vLinesDiversionChannels, vPointsWaterUsers, vPolygonWatershedBasin];
+	let mapLayers = [tStamenTerrian, tOpenStreetMaps, tMapbox, vLinesRivers, vLinesDiversionChannels, vPointsWaterUsers, vPolygonWatershedBasin];
 
 	let mapView = new ol.View({
 		projection: 'EPSG:4326',
