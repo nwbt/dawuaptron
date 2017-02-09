@@ -51,10 +51,11 @@ function switchPrimaryTabs() {
 	let currentTab = document.getElementById("primary-tab-page_" + activeTabNumber);
 	currentTab.style.display="block";
 
-	let currentTabChildren = currentTab.getElementsByTagName("div");
-	for (let i = 0; i < currentTabChildren.length; i++) {
-		currentTabChildren.item(i).style.display="block";
-	}
+	// todo this block may be unnecessary and problematic because it interferes with display: flex
+	// let currentTabChildren = currentTab.getElementsByTagName("div");
+	// for (let i = 0; i < currentTabChildren.length; i++) {
+	// 	currentTabChildren.item(i).style.display="block";
+	// }
 	this.parentNode.setAttribute("primary-data-current", activeTabNumber);
 }
 
@@ -94,11 +95,11 @@ function switchSidebarTabs() {
 	let currentTab = document.getElementById("sidebar-tab-page_" + activeTabNumber);
 	currentTab.style.display="block";
 
-	// todo check to see how this work svg tag
-	let currentTabChildren = currentTab.getElementsByTagName("div");
-	for (let i = 0; i < currentTabChildren.length; i++) {
-		currentTabChildren.item(i).style.display="block";
-	}
+	// todo this block may be unnecessary and problematic because it interferes with display: flex
+	// let currentTabChildren = currentTab.getElementsByTagName("div");
+	// for (let i = 0; i < currentTabChildren.length; i++) {
+	// 	currentTabChildren.item(i).style.display="block";
+	// }
 	this.parentNode.setAttribute("sidebar-data-current", activeTabNumber);
 }
 
@@ -154,18 +155,24 @@ function displayMap(){
 // todo clean up - var to let
 function displaySeriesLineChart() {
 	"use strict";
-	const $ = require("jquery");
-	let svg = d3.select("#chart");
+	const $ = require("jquery"); // set references to jQuery with the default $
+	// let d3 = require("d3");
+	let svg = d3.select("svg#chart"); // get a hold of the svg element
 
-	let	margin = {top: 20, right: 80, bottom: 30, left: 50};
+	let	margin = {
+		top: 20,
+		right: 80,
+		bottom: 30,
+		left: 50
+	}; // defining the chart/graph's margins
 
 	// not sure why but the below id's parent's height is correct and it's own is but a fraction of the avail space
-	let parentObj = $('#primary-tab-page_2').parent();
-	let origWidth = parentObj.width();
-	let origHeight = parentObj.height();
+	let parentObj = $('#primary-tab-page_2').parent(); // get reference to parent object of #primary-tab-page_2 which holds the dimensions of container/box
+	let origWidth = parentObj.width(); // get width of parent box
+	let origHeight = parentObj.height(); // get height of parent box
 
-    let width =  origWidth - margin.left - margin.right;
-    let height =  origHeight - margin.top - margin.bottom;
+    let width =  origWidth - margin.left - margin.right; // calculate the total width
+    let height =  origHeight - margin.top - margin.bottom; // calculate the total height
 
 	let	g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 

@@ -21,7 +21,7 @@ body {
 	flex-flow: column nowrap;
 	height: 100vh;
 	width: 100vw;
-	font: .8em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font: .6em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 header {
@@ -33,7 +33,11 @@ header {
 
 input {
 	margin: .5em;
-	font: 1em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font: .9em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.input_and_button > input {
+	width: 60%;
 }
 
 select {
@@ -46,7 +50,7 @@ button {
 	margin: .5em .5em .5em 1.25em;
 	padding: .5em;
 	font: 1em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-	/*border-radius: .25em;*/
+	width: 7.5em;
 }
 
 .header-control-boxes {
@@ -62,6 +66,7 @@ button {
 .input_and_button {
 	display: flex;
 	flex-flow: row nowrap;
+	align-items: baseline;
 }
 
 #hydra-url {
@@ -256,6 +261,7 @@ h2 {
 	margin: .5em;
 	border: solid thin;
 	padding: .5em;
+	justify-content: space-between;
 }
 
 .sidebar-tab-page > h3 {
@@ -265,12 +271,21 @@ h2 {
 #control-container_last {
 	display: flex;
 	flex-flow: row nowrap;
-	height: 15%;
+	height: 14%;
 	border: none;
-	justify-content: space-between;
+	align-items: center;
 }
 
 #control-container_last-left {
 	display: flex;
 	flex-flow: column nowrap;
+}
+
+#control-container_last-left > button {
+	margin-left: .5em;
+	width: 11em;
+}
+
+#control-container_last-right > button {
+	margin-right: 2em;
 }
