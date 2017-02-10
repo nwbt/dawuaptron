@@ -107,13 +107,13 @@ function displayMap(){
 	'use strict';
 	const ol = require('openlayers');
 	const $ = require("jquery"); // set references to jQuery with the default $
-	console.log('beginning')
 	let montanaCoord = [-110, 47];
 
 	let linesRivers;
 	let linesDiversionChannels;
 	let pointsWaterUsers;
 	let polygonWatershedBasin;
+	let pointsStreamflowGauges;
 
 	let width = 0.5;
 	let whiteFill = new ol.style.Fill({
@@ -128,9 +128,14 @@ function displayMap(){
 		color: 'rgba(255, 0, 0, 0.75)',
 	});
 
-	let cyanStroke = new ol.style.Stroke({
+	let blackStroke = new ol.style.Stroke({
 		color: 'rgba(0, 0, 0, 0.25)',
-		width: width,
+		width: width * 1.5,
+	});
+
+	let blueStroke = new ol.style.Stroke({
+		color: 'rgba(0, 0, 255, .6)',
+		width: width * .6,
 	});
 
 	let magentaStroke = new ol.style.Stroke({
@@ -156,30 +161,37 @@ function displayMap(){
 
 	let defaultStyle2 = new ol.style.Style({
 		fill: whiteFill,
-		stroke: cyanStroke,
+		stroke: blackStroke,
 		image: defaultCircle2,
 	});
 
-	// todo not accurate name
+	let defaultStyle3 = new ol.style.Style({
+		fill: whiteFill,
+		stroke: blueStroke,
+		image: defaultCircle2,
+	});
+
+	pointsStreamflowGauges = new ol.source.Vector({
+		projection: 'EPSG:4326',
+		format: new ol.format.GeoJSON(),
+		url: "tests/resources/geojson/MontanaHydroToNodesLatLon.geojson",
+	});
+
 	linesRivers = new ol.source.Vector({
 		projection: 'EPSG:4326',
 		format: new ol.format.GeoJSON(),
-		// url: "tests/resources/montananetworklatlon.geojson",
-		url: "tests/resources/geojson/MontanaHydroToNodesLatLon.geojson",
+		url: "tests/resources/montananetworklatlon.geojson",
 	});
 
 	linesDiversionChannels = new ol.source.Vector({
 		projection: 'EPSG:4326',
 		format: new ol.format.GeoJSON(),
-		// url: "tests/resources/MontanaHydroToNodesLatLon.geojson",
-		// url: "tests/resources/geojson/MontanaHydroToNodesLatLon.geojson",
 		url: "tests/resources/geojson/DiversionChannelLatLon.geojson",
 	});
 
 	pointsWaterUsers = new ol.source.Vector({
 		projection: 'EPSG:4326',
 		format: new ol.format.GeoJSON(),
-		// url: "tests/resources/WaterUserNodeLatLon.geojson",
 		url: "tests/resources/geojson/WaterUserNodeLatLon.geojson",
 	});
 
@@ -189,12 +201,20 @@ function displayMap(){
 		url: 'tests/resources/geojson/MontanaWatershedBasins.geojson',
 	});
 
+	let vPointsStreamflowGauges = new ol.layer.Vector({
+		name: 'pointsStreamflowGauges',
+		source: pointsStreamflowGauges,
+		visible: false,
+		zIndex: 95,
+		style: defaultStyle2,
+	});
+
 	let vLinesRivers = new ol.layer.Vector({
 		name: 'linesRivers',
 		source: linesRivers,
 		visible: false,
 		zIndex: 97,
-		style: defaultStyle2,
+		style: defaultStyle3,
 	});
 
 	let vLinesDiversionChannels = new ol.layer.Vector({
@@ -249,7 +269,7 @@ function displayMap(){
 	// todo dynamically add checkboxes here & remove from html
 	// let checkboxes = $('#maplayer-controls')
 
-	let mapLayers = [tStamenTerrian, tOpenStreetMaps, tMapbox, vLinesRivers, vLinesDiversionChannels, vPointsWaterUsers, vPolygonWatershedBasin];
+	let mapLayers = [tStamenTerrian, tOpenStreetMaps, tMapbox, vPointsStreamflowGauges, vLinesRivers, vLinesDiversionChannels, vPointsWaterUsers, vPolygonWatershedBasin];
 
 	let mapView = new ol.View({
 		projection: 'EPSG:4326',
@@ -295,8 +315,6 @@ function displayMap(){
 			}
 		}
 	});
-
-	console.log('end')
 }
 
 // todo clean up - var to let
