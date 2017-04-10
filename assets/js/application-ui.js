@@ -180,7 +180,8 @@ function displayMap(){
 	linesRivers = new ol.source.Vector({
 		projection: 'EPSG:4326',
 		format: new ol.format.GeoJSON(),
-		url: "tests/resources/montananetworklatlon.geojson",
+		// url: "tests/resources/montananetworklatlon.geojson",
+		url: "http://ec2-54-186-152-247.us-west-2.compute.amazonaws.com:8081/network?network_id=2",
 	});
 
 	linesDiversionChannels = new ol.source.Vector({
